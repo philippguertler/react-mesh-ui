@@ -6,24 +6,17 @@ const Main = React.lazy(() => import("./Main"));
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact component={redirect("/login")} />
-        <Route path="/login" exact component={Login} />
-        <Route component={WaitingComponent(Main)} />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/" exact component={redirect("/login")} />
+          <Route path="/login" exact component={Login} />
+          <Route component={Main} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 }
 
 function redirect(route: string) {
   return () => <Redirect to={route} />
-}
-
-
-function WaitingComponent<T>(Component: React.ComponentType<T>) {
-  return (props: T) => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Component {...props} />
-    </Suspense>
-  )
 }
