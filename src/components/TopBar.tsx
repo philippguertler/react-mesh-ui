@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import logo from '../assets/logo.svg';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const Top = styled.div`
   background-color: #fff;
@@ -51,12 +52,12 @@ export default function TopBar() {
     <Top>
       <div className="content">
         <div className="top-bar-left">
-          <a className="logo-container" href="#">
+          <Link className="logo-container" to="/">
             <img alt="" src={logo} />
             <span>Gentics
                 <span className="color-dark">Mesh UI</span>
             </span>
-          </a>
+          </Link>
         </div>
         <div className="content-right">
           <Button variant="contained">Admin</Button>
