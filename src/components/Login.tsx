@@ -7,22 +7,30 @@ import { namedFormSubmit } from 'util/form';
 
 const Container = styled.div`
   text-align: center;
+  
+  .login-header {
+    font-weight: 200;
+    text-transform: uppercase;
+    line-height: 1;
+
+    .name-company {
+      color: #0096DC;
+      font-size: 2.8rem;
+    }
+
+    .name-app {
+      font-size: 4.1rem;
+      color: #79797d;
+    }
+  }
 `
 
-const LoginHeader = styled.div`
-  font-weight: 200;
-  text-transform: uppercase;
-  line-height: 1;
-`
-
-const NameCompany = styled.div`
-  color: #0096DC;
-  font-size: 2.8rem;
-`
-
-const NameApp = styled.div`
-  font-size: 4.1rem;
-  color: #79797d;
+const StyledTextField = styled(TextField)`
+  display: block;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 `
 
 const LoginForm = () => {
@@ -36,8 +44,8 @@ const LoginForm = () => {
   return (
     <form onSubmit={namedFormSubmit(submit)}>
       <Redirecter />
-      <TextField name="username" autoFocus label="Username" />
-      <TextField name="password" label="Password" />
+      <StyledTextField name="username" autoFocus label="Username" />
+      <StyledTextField type="password" name="password" label="Password" />
       <Button type="submit" variant="contained" color="primary">Log In</Button>
     </form>
   )
@@ -46,10 +54,10 @@ const LoginForm = () => {
 export default function Login() {
   return (
     <Container>
-      <LoginHeader>
-        <NameCompany>Gentics</NameCompany>
-        <NameApp>Mesh</NameApp>
-      </LoginHeader>
+      <div className="login-header">
+        <div className="name-company">Gentics</div>
+        <div className="name-app">Mesh</div>
+      </div>
 
       <LoginForm />
     </Container>

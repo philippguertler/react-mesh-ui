@@ -13,10 +13,11 @@ export function usePromise<T>(promiseSupplier: () => Promise<T>): T | typeof LOA
   return state;
 }
 
-export function useRedirect(path: string): [React.ComponentType, () => void] {
+export function useRedirect(path: string, push = true): [React.ComponentType, () => void] {
   const [state, setState] = useState(false);
+
   return [
-    (props) => state ? <Redirect to={path} /> : null,
+    () => state ? <Redirect push={push} to={path} /> : null,
     () => setState(true)
   ];
 }
